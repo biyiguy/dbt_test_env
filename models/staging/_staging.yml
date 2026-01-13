@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Cleaned customer data from RAW schema
+    columns:
+      - name: customer_id
+        description: Unique identifier for a customer
+        # tests:
+        #   - not_null
+        #   - unique
+
+      - name: first_name
+        description: Customer first name
+
+      - name: last_name
+        description: Customer last name
+
+      - name: email
+        description: Customer email address
+
+      - name: customer_created_at
+        description: Timestamp when the customer was created
+
+
+  - name: stg_orders
+    description: Cleaned order data from RAW schema
+    columns:
+      - name: order_id
+        description: Unique identifier for an order
+        # tests:
+        #   - not_null
+        #   - unique
+
+      - name: customer_id
+        description: Identifier of the customer who placed the order
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+      - name: order_amount
+        description: Monetary value of the order
+
+      - name: order_status
+        description: Status of the order (completed, cancelled, etc.)
+
+      - name: order_created_at
+        description: Timestamp when the order was created
+
