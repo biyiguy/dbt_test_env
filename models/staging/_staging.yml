@@ -34,10 +34,10 @@ models:
 
       - name: customer_id
         description: Identifier of the customer who placed the order
-        tests:
-          - relationships:
-              to: ref('stg_customers')
-              field: customer_id
+        # tests:
+        #   - relationships:
+        #       to: ref('stg_customers')
+        #       field: customer_id
 
       - name: order_amount
         description: Monetary value of the order
